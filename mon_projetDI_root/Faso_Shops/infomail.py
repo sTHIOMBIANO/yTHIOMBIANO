@@ -1,0 +1,5 @@
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.mail.com'
+EMAIL_HSOT_USER='sthiombiano19@gmail.com'
+EMAIL_HOST_PASSWORD=
+EMAIL_PORT=587

@@ -1,0 +1,24 @@
+{% extends 'posts/base.html' %}{% load static %} {% block content %}
+<div class="row">
+    <div class="col-md-6 p-5 ">
+        <div>
+            <img src="/{{ Dproduit.image }}" alt="" width="500px" height="650px" class="border border-5">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="text-warning display-3">
+            {{ Dproduit.titre }}
+        </div>
+        <div class="text-danger">
+            {{ Dproduit.prix }}
+        </div>
+        <div>
+            {{ Dproduit.description }}
+        </div>
+        <a href="" class="btn btn-danger">Acheter</a>
+    </div>
+</div>
+
+
+
+{% endblock %}

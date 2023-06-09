@@ -1,0 +1,66 @@
+{% extends "posts/base.html" %} {% block content%}
+<div class="container ">
+    <div class="row " id="page1 ">
+        {% for product in habit %}
+        <div class="col-sm-4 ">
+            <div class="card mt-3 " style="box-shadow:4px 3px 3px 0 rgba(0,0,0,0.5); width: 100%; ">
+                <img src="/{{ product.image }} " alt=" " class="card-ing-top img-fluid rounded " style="height: 400px; width: 100%; object-fit: cover; background-position: center; background-size: cover; filter: drop-shadow(0,0,5px blue);">
+                <div class="card-body " style="height: 230px; border-top: solid 5px red; ">
+                    <div id="b{{ product.id }}" class="card-title ">{{ product.titre }}</div>
+                    <div id="p{{ product.id }}" class="card-text text-success " style="font-size: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; text-shadow: 0cap; ">{{ product.prix }} </div>
+
+                    <button id="{{ product.id }} " class="btn bouton btn-outline-warning rounded-pill border border-warning " style="border-width: solid 2px orange; font-weight: bold; margin:15px 70px 15px 70px; width: 200px; " onclick="
+        //console.log('Acheter');
+        if (localStorage.getItem('panier') == null) {
+            var panier = {};
+        } else {
+            panier = JSON.parse(localStorage.getItem('panier'));
+
+        }
+        var item_id = '{{ product.id }}';
+        
+        //console.log(item_id);
+        if (panier[item_id] != undefined) {
+            panier[item_id] = panier[item_id] + 1;
+            Afficher(panier);
+            
+            
+            //panier[item_id][3]++;
+           
+            //panier[item_id][3] = parseInt(quantite);
+            
+            //quantite = panier[item_id] + 1;
+            //panier[item_id][1] = parseFloat(document.getElementById('p'+ item_id).innerHTML);
+            //panier[item_id][2] += parseFloat(document.getElementById('p' + item_id).innerHTML);
+        } else {
+            panier[item_id] = 1;
+            //console.log(panier[item_id]);
+            quantite = 1;
+            //console.log('id');
+            //prix = parseFloat(document.getElementById('p' + item_id).innerHTML);
+            name= document.getElementById('b' + item_id).innerHTML;
+            //unitaire = parseFloat(document.getElementById('p' + item_id).innerHTML);
+            panier[item_id] = [quantite,name];
+            //console.log('promp');
+        }
+        console.log(panier);
+        localStorage.setItem('panier', JSON.stringify(panier));
+        document.getElementById('panier').innerHTML = 'Panier(' + Object.keys(panier).length + ')';
+        //Afficher(panier);
+        function Afficher(panier){
+            var stringvar='';
+            for(elem in panier){
+                stringvar+=document.getElementById('b'+elem).innerHTML+panier[elem] +panier[elem];
+            }
+        }
+" ;>Acheter</button>
+                    <a href="/{{ product.id}} " class="btn btn-outline-info rounded-pill border border-info " style="border-width: 3px; font-weight: bold; margin: 20px 70px 20px 70px; width: 200px; ">Details</a>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

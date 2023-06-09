@@ -1,0 +1,139 @@
+{% extends "posts/base.html" %} {% block content %}
+
+<div id="page2">
+    <h1 class="text-primary ">La liste de vos produits</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered rounded" style="border: 3px solid rgb(255, 0, 0);border-radius: 10%;">
+                <thead style="border: 3px solid red;">
+                    <tr>
+
+                        <th scope="col" style="border: 3px solid red;">Libelle des produits</th>
+                        <th scope="col" style="border: 3px solid red;">Quantite</th>
+                        <th scope="col" style="border: 3px solid red;">Prix unitaire</th>
+                        <th scope="col" style="border: 3px solid red;">Prix Total</th>
+                        <th scope="col" style="border: 3px solid red;">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody id="item-list">
+
+                </tbody>
+                <tbody id="item-list1">
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<hr>
+
+<h2 class="text-primary text-center text-shadow m-5">Remplissez le formulaire puis valider votre commande</h2>
+<form class="needs-validation" novalidate method="POST">
+    {% csrf_token %}
+    <input type="hidden" id="items" name="item">
+    <input type="hidden" id="total" name="total">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" placeholder="nom" required>
+            <div class="valid-tooltip">
+                Looks good!
+            </div>
+
+            <!--{{ form.as_p }}-->
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">Prenom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="prenom" required>
+            <div class="valid-tooltip">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationTooltipUsername">Email</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                </div>
+                <input type="email" class="form-control" id="mail" name="email" placeholder="email" aria-describedby="validationTooltipUsernamePrepend" required>
+                <div class="invalid-tooltip">
+                    Please choose a unique and valid username.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Ville/Secteur/Rue</label>
+            <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville/Secteur/Rue" required>
+            <div class="invalid-tooltip">
+                Please provide a valid city.
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="validationTooltip04">Pays</label>
+            <input type="text" class="form-control" id="stat" name="pays" placeholder="Pays" required>
+            <div class="invalid-tooltip">
+                Please provide a valid state.
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="validationTooltip05">Telephone</label>
+            <input type="text" class="form-control" id="tel" name="tel" placeholder="telephone" required>
+            <div class="invalid-tooltip">
+                Please provide a valid zip.
+            </div>
+        </div>
+
+
+    </div>
+    <button id="com" class="btn btn-primary" type="submit">Commander</button>
+</form>
+
+
+
+{% endblock %} {% block js %}
+<script type="text/javascript">
+    if (localStorage.getItem('panier') == null) {
+        var panier = {};
+    } else {
+        panier = JSON.parse(localStorage.getItem('panier'));
+    }
+    var total = 0;
+    var nombre = 0;
+    let quantite = 0;
+    for (item in panier) {
+        let nom = panier[item][0];
+
+
+        let prix = panier[item][1];
+        //let unitaire = panier[item][1]
+        total += prix;
+        //nombre += quantite;
+        let itemString = `<tr style="border: 3px solid red;">
+           
+            <td style="border: 3px solid red;">${nom}</td>
+            <td style="border: 3px solid red;">${quantite}</td>
+            <td style="border: 3px solid red;">${unitaire}</td>
+            <td style="border: 3px solid red;">${prix}</td>
+            <td><button id="bouton" class=" supprimer btn btn-danger" type="submit">Supprimer</button></td>
+        </tr> `;
+
+        $('#item-list').append(itemString);
+
+
+
+    }
+
+    let itemtotal = `
+           <td colspan="3">
+          <h3><span class="text-center mr-3">Montant Total a payer:</span>${total} F CFA</h3>
+           <h3><span class="text-center mr-3">Quantite Total:</span>${nombre}</h3>
+          </td> `;
+    $('#item-list1').append(itemtotal);
+    $('#items').val(JSON.stringify(panier))
+    $('#total').val(total);
+</script>
+{% endblock %}

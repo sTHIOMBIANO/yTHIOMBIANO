@@ -1,0 +1,142 @@
+{% extends "posts/base.html" %} {% load static %} {% block content%} {% for message in messages %}
+<h3>{{ message }}</h3>
+{% endfor %}
+
+<form action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--{{ form.as_p }}-->
+    <div id="principal" style="margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fec107; height: 700px;">
+        <div class="_wrapper_" style="max-width: 700px;
+        width: 600px;
+        background-color: #fff;
+        margin: 10px auto;
+        padding: 30px;
+        height: 600px;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);">
+            <div class="title" style="font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #fec107;">
+                <h1>Registration Form</h1>
+            </div>
+            <hr>
+            <div class="form" style="width: 100%;">
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="username" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Username</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="text" name="username" class="input" id="username" placeholder="enter your username" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="firstname" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Firstname</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="text" name="firstname" class="input" id="firstname" placeholder="enter your firstname" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="lastname" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Lastname</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="text" name="lastname" class="input" id="lastname" placeholder="enter your lastname" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="email" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Email</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="email" name="email" class="input" id="email" placeholder="enter your Email" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="password" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Password</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="password" name="password" class="input" id="password" placeholder="enter your password" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <label for="password1" style="width: 200px;
+                    color: #757575;
+                    margin-right: 10px;
+                    font-size: 14px;">Confirm Password</label>
+                    <input style="width: 100%;
+                    outline: none;
+                    border: 1px solid #d5dbd9;
+                    font-size: 15px;
+                    padding: 8px 10px;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;" type="password" name="password1" class="input" id="password1" placeholder="confirm your password" required>
+
+                </div>
+                <div class="mon_form" style="margin-bottom: 15px;
+                display: flex;
+                align-items: center;">
+                    <input type="submit" value="S'inscrire" class="btn1" style="width: 100%;
+                    padding: 8px 10px;
+                    font-size: 15px;
+                    border: none;
+                    border-radius: 3px;
+                    outline: none;
+                    cursor: pointer;
+                    background: #fec107;
+                    color: #fff;">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,239 @@
+ {% extends "posts/base.html" %}{% load static %} {% block content %}
+<div class="container">
+    <div class="row" style="  height: 150px; background-image: linear-gradient(161deg, rgba(117, 117, 117, 0.03) 0%, rgba(117, 117, 117, 0.03) 50%,rgba(8, 8, 8, 0.03) 50%, rgba(8, 8, 8, 0.03) 100%),linear-gradient(59deg, rgba(245, 245, 245, 0.05) 0%, rgba(245, 245, 245, 0.05) 50%,rgba(68, 68, 68, 0.05) 50%, rgba(68, 68, 68, 0.05) 100%),linear-gradient(286deg, rgba(107, 107, 107, 0.07) 0%, rgba(107, 107, 107, 0.07) 50%,rgba(7, 7, 7, 0.07) 50%, rgba(7, 7, 7, 0.07) 100%),linear-gradient(123deg, rgba(9, 9, 9, 0.09) 0%, rgba(9, 9, 9, 0.09) 50%,rgba(120, 120, 120, 0.09) 50%, rgba(120, 120, 120, 0.09) 100%),linear-gradient(170deg, rgba(202, 202, 202, 0.01) 0%, rgba(202, 202, 202, 0.01) 50%,rgba(19, 19, 19, 0.01) 50%, rgba(19, 19, 19, 0.01) 100%),linear-gradient(210deg, rgba(64, 64, 64, 0.04) 0%, rgba(64, 64, 64, 0.04) 50%,rgba(4, 4, 4, 0.04) 50%, rgba(4, 4, 4, 0.04) 100%),linear-gradient(90deg, rgb(249, 17, 190),rgb(100, 28, 213));">
+
+
+        <div class="" style="width: 800px; border-radius: 10px; display: flex; margin: 30px 10px 20px 5px;">
+            <div style="width: 50px; height: 50px;background-color: #f2f2f2; border-radius: 10px 0px 0px 10px;"><img src="static/album/icon.png" alt=""></div>
+            <form method="GET">
+                <div style="height: 50px;">
+                    <input style="height: 50px; width: 500px; border-radius: 0px 10px 10px 0px; border: 0.5px solid #f2f2f2;" type="search" name="items-name" placeholder="Entrez le prix de votre wallet">
+                </div>
+            </form>
+            <div class="col-auto"><button style="height: 50px; width: 150px;" type="submit" class="btn btn-outline-warning">Rechercher</button></div>
+            {% if user.is_authenticated %}
+
+            <a style="height: 50px; width: 150px; margin-left: 150px;" href="{% url 'deconnect' %}" class="btn btn-outline-info">Se Deconnecter</a> {% else %} {% for message in messages %} {% endfor %}
+            <div class="col-auto"><a href="{% url 'create' %}" class="btn">Connexion</a></div>
+            <div class="col-auto"><a style="height: 50px; width: 150px;" href="{% url 'register' %}" class="btn">S'inscrire</a></div>
+            {% endif %}
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+<!--<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        {% for con in produit_objet %}
+
+        <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}" style="height: 500px; width: 500px; margin: 10px 350px 10px 350px;">
+            <img class=" img-fluid d-block w-100 " style="height: 500px; width: 500px; margin: auto; " src="{{ con.image }} " alt="{{ con.titre }} ">
+            <div class="carousel-caption d-none md d-block ">
+
+                <button class="animate_animated animate_ZoomIN mt-3 p-4 px-5 btn font-weight-bold ">About us</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>-->
+<!--<div class="row">
+    <div class="col-md-9">
+        {% if produit_objet %}
+        <div class="row carousel-holder">
+            <div class="col-md-12">
+                <div id="carousel" class="carousel slide" data-interval="5000" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for picture in produit_objet %}
+                        <li data-target="#carousel" data-slide-to="{{ forloop.counter0 }}" class=""></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for picture in produit_objet %}
+                        <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
+                            <img class="slide-image" src="/{{ picture.image }}" />
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="left carousel-control" href="#carousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}-->
+
+
+<div id="page1">
+    <div class="container ">
+        <div class="row ">
+            {% for product in produit_objet %}
+            <div class="col-sm-4 ">
+                <div class="card mt-3 " style="box-shadow:4px 3px 3px 0 rgba(0,0,0,0.5); width: 100%; ">
+                    <img src="{{ product.image }} " alt=" " class="card-ing-top img-fluid rounded " style="height: 400px; width: 100%; object-fit: cover; background-position: center; background-size: cover; filter: drop-shadow(0,0,5px blue);">
+                    <div class="card-body " style="height: 230px; border-top: solid 5px red; ">
+                        <div id="b{{ product.id }}" class="card-title ">{{ product.titre }}</div>
+                        <div class="card-text" style="display: flex;">
+                            <div id="p{{ product.id }}" class="card-text text-success mx-5" style="font-size: 25px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight: bold; text-shadow: 0cap; ">{{ product.prix }} </div>
+                            <div class="mx-5" style="border: 1px solid #ccc; box-shadow:4px 3px 3px 0 rgba(0,0,0,0.5); width: 150px;"><button style="width: 20px; height: 30px; outline: none; border: none; font-size: 20px; font-weight: 700; background: #fff;" onclick="
+                            var item='{{ product.id }}';
+                                const totalClicks = document.getElementById('totalClicks'+item);
+                                const totalvalue = parseInt(totalClicks.innerText) - 1;
+                                totalClicks.innerText = totalvalue;
+                                if(totalvalue<1){totalClicks.innerText=1;}">-</button><span class="mx-1 px-1" style="font-weight: 700;color: orangered; width: 100px;" id="totalClicks{{ product.id }}">0</span>
+                                <button style="width: 20px; height: 30px; outline: none; border: none; font-size: 20px; font-weight: 700; background: #fff;" class="plu" onclick="
+                                var item='{{ product.id }}';
+                                const totalClicks = document.getElementById('totalClicks'+item);
+                                const sumvalue = parseInt(totalClicks.innerText) + 1;
+                                totalClicks.innerText = sumvalue;">+</button>
+                            </div>
+                        </div>
+                        <button id="{{ product.id }} " class="btn bouton btn-outline-warning rounded-pill border border-warning " style="border-width: solid 2px orange; font-weight: bold; margin:15px 70px 15px 70px; width: 200px; " onclick="
+        
+        var item_id = '{{ product.id }}';
+        var prix = parseFloat(document.getElementById('p' + item_id).innerHTML);
+        console.log(prix);
+        var name= document.getElementById('b' + item_id).innerHTML;
+        console.log(name);
+        var quantite = 1;
+        if (localStorage.getItem('panier') == null) {
+            var panier=[];
+        }else{
+           var panier = JSON.parse(localStorage.getItem('panier'));
+        }
+        
+        if (panier[item_id] != undefined) {
+            panier[item_id] = panier[item_id] + 1;
+           //console.log(panier);
+           //var qte =parseInt(panier[item_id][2])+1;
+           //panier[item_id][2]=qte;
+
+            
+            
+        } else {
+            panier[item_id] = 1;
+            
+            panier[item_id]=[name, prix];
+            console.log(panier[item_id]);
+            
+            
+        }
+        console.log(panier);
+        localStorage.setItem('panier', JSON.stringify(panier));
+        document.getElementById('panier').innerHTML = 'Panier(' + Object.keys(panier).length + ')';
+        //Afficher(panier);
+        
+" ;>Acheter</button>
+                        <a href="{{ product.id}} " class="btn btn-outline-info rounded-pill border border-info " style="border-width: 3px; font-weight: bold; margin: 20px 70px 20px 70px; width: 200px; ">Details</a>
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="cl-md-3 offset-sm-4">
+            <ul class="pagination">
+                {% if produit_objet.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ produit_objet.previous_page_number }}">Precedent</a>
+                </li>
+                {% endif %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ produit_objet.number }}">{{ produit_objet.number }}</a>
+                </li>
+                {% if produit_objet.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ produit_objet.next_page_number }}">Suivant</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block js %}
+<script type="text/javascript ">
+    /*const count = parseInt(document.getElementById('plus').innerHTML);
+                                                            const plu = document.querySelector('.plu');
+                                                            let mavar = document.getElementById('')
+                                                            let counter = 0;
+                                                            $(document).on('click', '.plu', function() {
+                                                                counter += 1;
+                                                                console.log("click me")
+                                                                document.getElementById('plus').innerHTML = counter;
+                                                            })*/
+
+    function totalClick(click) {
+        var item = this.id.toString();
+        console.log(item);
+        const totalClicks = document.getElementById('totalClicks' + item);
+        const sumvalue = parseInt(totalClicks.innerText) + click;
+        totalClicks.innerText = sumvalue;
+
+    }
+    /* if (localStorage.getItem('panier') == null) {
+    var panier = {};
+    } else {
+    panier = JSON.parse(localStorage.getItem('panier'));
+
+    }
+
+    $(document).on('click', '.bouton', function() {
+    console.log('Acheter');
+    var item_id = this.id.toString();
+    console.log(item_id);
+    if (panier[item_id] != undefined) {
+    panier[item_id] = panier[item_id] + 1;
+    quantite = panier[item_id][0] + 1;
+
+    panier[item_id][0] = quantite;
+    panier[item_id][2] = parseFloat(document.getElementById("p" + item_id).innerHTML);
+    //panier[item_id][3] += parseFloat(document.getElementById("p" + item_id).innerHTML);
+
+
+    } else {
+    panier[item_id] = 1;
+    console.log(panier[item_id]);
+    quantite = 1;
+    console.log("id");
+    prix = parseFloat(document.getElementById("p" + item_id).innerHTML);
+    //console.log("prix");
+    //unitaire = parseFloat(document.getElementById("p" + item_id).innerHTML);
+    //console.log("panne");
+    //var name = document.getElementById("b " + item_id).innerHTML;
+    //console.log("pan");
+    panier[item_id] = [quantite, prix];
+    console.log("promp");
+    }
+    console.log(panier);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    document.getElementById("panier").innerHTML = "Panier(" + Object.keys(panier).length + ")";
+    });*/
+
+
+
+
+    /*function Afficher(panier) {
+        var panierObjet = " ";
+        panierObjet += "<h5>la liste de vos produits</h5>" var indice = 1; for (var x in panier) { panierObjet += indice; panierObject += document.getElementById("b" + x).innerHTML + "Quantite" + panier[x]; indice += 1; } $('[data-bs-toggle="popover"]').popover(); document.getElementById("panier").setAttribute("data-bs-content",
+            panierObjet); }*/
+</script>
+{% endblock%}
